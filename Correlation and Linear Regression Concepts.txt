@@ -1,0 +1,149 @@
+Correlation and Linear Regression
+
+Independent Variables (IV)
+
+An independent variable, also known as a predictor variable, is a value that is independent of the other variables in your dataset. Consider this variable the "cause". Independent variables are commonly represented with "x".
+
+Dependent Variables (DV)
+
+A dependent variable, also known as an outcome variable, is a value that is dependent on the values of the other variables in your dataset. Consider this variable the "effect". We assume that changes in the values of the independent variable(s) will result in changes to the dependent variable. Dependent variables are commonly represented with "y".
+
+Correlation:
+
+Correlation values range from "-1" to "+1". Variables that are positively correlated are closer to "+1" and variables that are negatively correlated are closer to "-1".
+
+Positively correlated variables move in the same direction - as one variable increases, the other variable increases in the same direction.
+
+Negatively correlated variables move in the opposite direction - as one variable increases, the other variable decreases (or vice versa).
+
+Strength of Relationship between Variables:
+
+The strength of the relationship between variables is determined by the value of the correlation coefficient. To interpret its value, see which of the following values your correlation coefficient is closest to:
+
+1. Exactly –1: A perfect downhill (negative) linear relationship
+2. –0.70: A strong downhill (negative) linear relationship
+3. –0.50: A moderate downhill (negative) relationship
+4. –0.30: A weak downhill (negative) linear relationship
+5. 0: No linear relationship
+6. +0.30: A weak uphill (positive) linear relationship
+7. +0.50: A moderate uphill (positive) relationship
+8. +0.70: A strong uphill (positive) linear relationship
+9. Exactly +1: A perfect uphill (positive) linear relationship
+
+Qualitative Variables and Association:
+
+The correlation matrix is great for examining the relationship between two numeric variables, however, this method does not work when you want to assess the relationship between qualitative variables, or one qualitative and one numeric variable. Associations and Differences between 2 groups of qualitative variables or between 1 qualitative variable and 1 numeric variable can be determined by the crosstab and groupby functions in Python. 
+
+Variance and Dependent Variable:
+
+Understanding which variables have a relationship with your dependent variable is the first step. The next step is to better understand what is influencing that relationship, or the variance seen in your dependent variable. Variance describes the variation in values for a specific variable.
+
+The key question is: how do changes in the independent variables explain the variance in the dependent variable? An additional question is: how much of the variation in the dependent variable can be attributed to each independent variable?
+
+Once we understand the factors that are influencing the dependent variable, we can purposefully manipulate the values of the independent variables to predict how that will change the dependent variable. This is where regression comes in handy!
+
+Linear Regression:
+
+Linear Regression is a powerful statistical tool that allows for a closer examination of the linear relationship between a continuous dependent variable and various independent variables.
+
+Linear regression allows you to :
+
+1. Determine if the relationship between the dependent and independent variables is statistically significant (or accurate).
+2. Identify how much of the variation in the dependent variable is explained by the selection of independent variables.
+3. Determine the direction and magnitude of the relationships between variables, and
+4. Predict what the value of the dependent variable would be given specific input from the independent variables.
+
+A simple linear regression models the relationships between a single dependent and independent variable, where the independent variable is predicting the value of the dependent variable. A linear regression model is mathematically represented by the formula of a line:
+
+                                                         y = mx + b
+
+Where “y” is the the value of the dependent variable, “m” is the slope (also known as the coefficient), “x” represents the value of the independent variable, and “b” is the y-intercept (also known as the constant) which is the value of “y” when the coefficient is equal to 0.
+
+Linear regression models will determine the line-of-best-fit, also known as the regression line, which is the best fitting straight line through your data points. 
+
+Creating a Linear Regression Model:
+
+1. result is the name that we are assigning the regression formula
+2. sm is the shorthand for the linear regression model
+3. ols is Ordinary Least Squares, the most common method of calculating the regression line
+4. the regression equation starts with the dependent variable on the left, followed by the independent variables
+5. independent variables are separated by "+"
+6. categorical variables must be in parentheses and annotated with a "C"
+7. data = is where you specify your dataset that you're pulling variables from
+8. .fit() function uses the predictive values to calculate the best linear regression line
+9. .summary() function will show the calculated values (slopes and y-intercept) for the linear regression formula
+
+Interpreting Linear Regression Result:
+
+Determining Model Fit:
+
+Linear regression calculates the regression line (equation) that minimizes the distance between the regression line and all the data points. If our data points fall closely to the generated regression line, we consider the model to be a good fit.
+
+Linear regression may not always be the right technique to use for the specific set of data. The fit of the model describes how well your variables explain the variance in the dependent variable.
+
+To assess the model fit, we look at the adjusted R-squared (Adj. R-squared). The Adj. R-squared is a statistical measure of how closely the data are to the fitted regression line. The Adj. R-squared is the percentage of variation in the dependent variable that can be explained by all the independent variables included in the model.
+
+Intercept
+
+The y-intercept, or constant, is the value given to the dependent variable if all independent variables are equal to 0. 
+
+Coefficients (coef)
+These values show how changes in the independent variable influence the dependent variable, and in what direction.
+
+Interpreting Numeric Variable Coefficients: 
+
+When you are looking at numeric variables (i.e. age), each coefficient represents the numeric change in the dependent variable given a one-unit change in the independent variable. 
+
+Interpreting Categorical Variable Coefficients:
+
+When working with categorical variables, the model will automatically take one of the categories and use it as a reference (i.e. comparison category). This reference category will not show up in the listed coefficients, and that is how you will be able to identify which category is serving as the reference. 
+
+Statistical Significance:
+
+p-value (P>|t|)
+
+When trying to determine if the results we received are statistically important - we need to consider the p-value. The p-value is the probability that you will receive the same results solely by chance (aka there is no meaning behind the results).
+
+Because the p-value is representing the probability of random findings, we always want to minimize this value. If the p-value was .5 (50%), that would mean that 50% of the time the results we see are just by chance. The p-value reflects how confident we are in our results and requires strict interpretation. A commonly used cut-off is 0.05 (5% chance the results observed are by chance) or below.
+
+1. If the p-value is less than or equal to 0.05, we can deem our results to be statistically significant.
+2. If the p-value is greater than 0.05, our results are not statistically significant.
+
+Non-significant variables:
+
+A good place to start is by removing non-significant variables from our model. 
+
+Comparing Models and Making Predictions:
+
+When comparting two models, the first thing you want to check is if there are any changes in the adjusted r-squared. The next item you want to check is the p-value of the remaining variables in the model. Did removing variables increase/decrease the p-values for the remaining variables? 
+
+You do not need to continue running your model until all your variables are significant. You should focus on maximizing your adj r-square, regardless of the significance of your variables.
+
+Making Predictions based on the Regression Results:
+
+Recall that a simple linear regression model is mathematically represented by the formula of a line: y = mx + b. When you are creating a multiple linear regression equation, the formula is similar - with some added features: y = b + (m1 x X1) + (m2 x X2) + (m3 x X3) + ....etc. where each "m x X" is representative of one of the coefficients in your model, and "b" represents the intercept. Once you have your regression output, you can plug these values in to make predictions on your dependent variable given specific values for your independent variables.
+
+Making Predictions with Categorical Variables:
+
+What if you have to include a categorical variable into your prediction equation? This is actually very simple! You will include all the categorical levels that appear in your model summary in your equation (not the reference category). Using the reference category as a guide, if the individual has the characteristic, the value within the equation will be "1", if the person does now have the characteristic, the value is "0". Let's consider gender for example, if we want to make predictions about a Male student - we multiply the gender coef by "1"; if we make predictions about a Female student - we multiply the gender coef by "0".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,109 @@
+The dataset comprises of 2000 rows and 10 columns.
+
+The column 'home_state' which showed the home State of each student was insignificant in terms of interpreting the grades of students, so 'home_state' column was dropped from the dataset.
+
+Missing data was found in the 'level_of_study' column.
+
+The 'level_of_study' column and 'hours' column showed redundancy. So the 'level_of_study' column which did not give substantial data to interpret, was deleted and the 'hours' column which showed the hours of study put in by students, was retained in the dataset. 
+
+After this initial clean up, there were 2000 rows and 8 columns to be analyzed from this dataset.
+
+Further, the dataset was checked for outliers and the outliers were removed using the interquartile range method. After the outliers were removed, there were 1998 rows and 8 columns of data to be analyzed from the dataset. 
+
+Next, a corrletaion matrix was run on the numeric variables of the dataset. The matrix shows a strong uphill linear relationship between hours of study and grades of students. 
+
+Further, association was established between 2 qualitative variables, gender and level of fitness. The result showed that the level of fitness in male students was higher in number in comparison to the female students. Another association between 1 qualitative variable (gender) and another quantitative variable (grade) was calculated. The result showed that the final grades of both male and female students was almost similar, with the grades of female students being slightly higher than the male students. 
+
+
+Linear regression models which determine the line-of-best-fit, also known as the regression line, is the best fitting straight line through your data points. Linear regression was calculated for this dataset.
+
+Determining the Model Fit:
+To assess the model fit, we look at the adjusted R-squared (Adj. R-squared). We got a good Adj. R-squared value of 0.678
+
+Intercept
+The y-intercept, or constant, is the value given to the dependent variable if all independent variables are equal to 0. The y-intercept value in this analysis is 57.54. 
+
+Further the Coefficients (coef) values that shows how changes in the independent variable influence the dependent variable, and in what direction were noted and interpreted as follows: 
+
+Numeric Variable Coefficients interpretation:
+
+When you are looking at numeric variables (i.e. age), each coefficient represents the numeric change in the dependent variable given a one-unit change in the independent variable. 
+
+INTERCEPT: when all other IV's are zero, expected grade is around 58
+
+AGE: for every one year increase in age, grade increases by 0.04 points (when controlling for hours of study, exercise, and gender)
+
+EXERCISE: for every one hour increase in exercise, grade increases by approximately 1 point (when controlling for age, hours of study, and gender)
+
+HOURS: for every one hour increase in study time, grade increases by 1.9 points (when controlling for age, hours of exercise, and gender)
+
+Statistical Significance:
+
+When trying to determine if the results we received are statistically important - we need to consider the p-value. The p-value reflects how confident we are in our results and requires strict interpretation. 
+1. If the p-value is less than or equal to 0.05, we can deem our results to be statistically significant.
+2. If the p-value is greater than 0.05, our results are not statistically significant.
+
+In our analysis, p-value is less than 0.05, so our result is statistically significant.
+
+If you have a variable that gives you a negative coefficient, the relationship moves in opposite directions. 
+
+AGE: for every one year increase in age, grade decreases by 0.04 points. But age proved as a non-significant variable in our analysis. 
+
+A good place to start is by removing non-significant variables from our model. In this example, gender, age, and level of fitness are not significant - so we tried a model without them as well. 
+
+Comparing Models and Making Predictions:
+
+When comparing two models, the first thing you want to check is if there are any changes in the adjusted r-squared. In this example, the adj r-squared has not changed at all after the non-significant variables were removed. The next item you want to check is the p-value of the remaining variables in the model. Did removing variables increase/decrease the p-values for the remaining variables? The p-value remained the same after removing non-significant variables. 
+
+You do not need to continue running your model until all your variables are significant. You should focus on maximizing your adj r-square, regardless of the significance of your variables. 
+
+Overall, in our analysis, gender, age and level of fitness were proved to be non-significant variables, and hence ther were removed and a model fit was determined using the 3 most significant variables, grade, hours of study and hours of exercise. The results were as follows:
+
+INTERCEPT: the expected grade came to 58.
+
+HOURS: for every one hour increase in study time, grade increases by 1.9 points (when controlling for hours of exercise)
+
+EXERCISE: for every one hour increase in exercise, grade increases by approximately 1 point (when controlling for hours of study)
+
+Interpreting Categorical Variable Coefficients: 
+
+When working with categorical variables, the model will automatically take one of the categories and use it as a reference (i.e. comparison category). This reference category will not show up in the listed coefficients, and that is how you will be able to identify which category is serving as the reference. In our model, gender is the only categorical variable, and can be interpreted:
+
+GENDER:
+
+1. Female is the reference category
+2. On average, male students have a grade 0.44 points lower than Female students (when controlling for age, hours of study, and exercise)
+
+The grade is lower because the coefficient is negative in this model. If we have more than 2 categories for our categorical variable, we would still compare each level to the reference. For example, if we had a group of students who choose not to disclose their gender, the coefficient for the 'undisclosed' group would show up in our model with it's own coefficient and we would compare those results to the Female category.
+
+
+Decribe data with the help of information about how variables interact:
+
+We now know that an increase of just one hour of studying will, on average, show a significant increase in a students final grade. You can also make predictions about future grades...
+
+Making Predictions based on the Regression Results:
+
+Recall that a simple linear regression model is mathematically represented by the formula of a line: y = mx + b. When you are creating a multiple linear regression equation, the formula is similar - with some added features: y = b + (m1 x X1) + (m2 x X2) + (m3 x X3) + ....etc. where each "m x X" is representative of one of the coefficients in your model, and "b" represents the intercept. Once you have your regression output, you can plug these values in to make predictions on your dependent variable given specific values for your independent variables.
+
+grade(y) = intercept(b) + [hours of study coef(m1) x hours of study(x1)] + [hours of exercise coef(m2) x hours exercise(x2)]
+
+grade(y) = 58.5316 + [1.9162 x hours of study(x1)] + [0.9892 x hours exercise(x2)]
+
+
+Making Predictions with Categorical Variables:
+
+What if you have to include a categorical variable into your prediction equation? This is actually very simple! You will include all the categorical levels that appear in your model summary in your equation (not the reference category). Using the reference category as a guide, if the individual has the characteristic, the value within the equation will be "1", if the person does now have the characteristic, the value is "0". Let's consider gender for example, if we want to make predictions about a Male student - we multiply the gender coef by "1"; if we make predictions about a Female student - we multiply the gender coef by "0".
+
+In our model, female is the reference category. In the regression equation – if an individual is Male – you will multiply the gender coefficient by “1”, if the individual is Female, you would multiply the gender coefficient by “0”.
+
+grade(y) = intercept(b) + [hours of study coef(m1) x hours of study(x1)] + [hours of exercise coef(m2) x hours exercise(x2)] + [gender coef(m1) x gender(x1)]
+
+grade(y) = 58.5316 + [1.9162 x hours of study(x1)] + [0.9892 x hours exercise(x2)] + [-0.4485 x gender(x1)]
+
+
+
+
+
+
+
+
