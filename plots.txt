@@ -1,1 +1,7 @@
-new data visualization file
+## Student grade plots 
+
+To graphically interpret relationships between all numeric and qualitative variables from the student grade dataset, we used various types of data visualization tools to display these relationships.
+
+We used histograms, density plots, boxplots, scatterplots, and bar plots to display relationships between variables and to understand trends and patterns in our data.
+
+Presenting a graphical representation of the data and its relationships, helps stakeholders to take make important decisions about the project. 
